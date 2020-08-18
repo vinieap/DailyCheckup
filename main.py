@@ -10,11 +10,23 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
+import getpass
+
+# Open secret.txt file for username and password information
+
+if not path.exists('secret.txt'):
+    os.mknod('secret.txt')
+    f = open("secret.txt", "w")
+    f.write(getpass.getpass("eid: ") + "\n")
+    f.write(getpass.getpass("password: "))
+    f.close()
 
 f = open("secret.txt", "r")
 
 user = f.readline()
 pwd = f.readline()
+
+f.close()
 
 options = Options()
 options.add_argument("--headless")
@@ -38,7 +50,7 @@ button = driver.find_element_by_xpath('//*[@id="fm1"]/div[3]/button')
 button.click()
 
 try:
-    wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/main/form/div[2]/div/div/div/div[1]/div/label[2]')))
+    wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="no"]')))
     driver.execute_script("document.getElementById('no').style.display='inline-block';")
     button = driver.find_element_by_xpath('//*[@id="no"]')
     button.click()
