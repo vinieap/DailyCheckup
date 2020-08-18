@@ -3,6 +3,7 @@ import pickle
 import os.path
 from os import path
 import time
+import sys
 from selenium.webdriver.firefox.options import Options
 from datetime import datetime
 from selenium.webdriver.support.ui import WebDriverWait
@@ -29,8 +30,13 @@ f.close()
 
 options = Options()
 options.add_argument("--headless")
+driver = None # initialize driver
+if sys.argv[1] == "chrome":
+    driver = webdriver.Chrome(options=options)
+else:
+    driver = webdriver.Firefox(options=options)
 
-driver = webdriver.Firefox(options=options)
+
 
 wait = WebDriverWait(driver, 5)
 
