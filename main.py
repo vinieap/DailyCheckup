@@ -13,7 +13,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 import getpass
 
 # Open secret.txt file for username and password information
-
 if not path.exists('secret.txt'):
     os.mknod('secret.txt')
     f = open("secret.txt", "w")
