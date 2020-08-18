@@ -42,12 +42,12 @@ wait = WebDriverWait(driver, 5)
 
 driver.get("https://dailyhealth.vcu.edu/")
 
-# if path.exists("cookies.pkl"):
-#     cookies = pickle.load(open("cookies.pkl", "rb"))
-#     for cookie in cookies:
-#         driver.add_cookie(cookie)
-# 
-# driver.get("https://dailyhealth.vcu.edu/")
+if path.exists("cookies.pkl"):
+    cookies = pickle.load(open("cookies.pkl", "rb"))
+    for cookie in cookies:
+        driver.add_cookie(cookie)
+
+driver.get("https://dailyhealth.vcu.edu/")
 
 driver.find_element_by_xpath('//*[@id="username"]').send_keys(user)
 driver.find_element_by_xpath('//*[@id="password"]').send_keys(pwd)
@@ -66,7 +66,7 @@ try:
 except TimeoutException:
     print("Already Done")
 
-# if not path.exists("cookies.pkl"):
-#     pickle.dump(driver.get_cookies(), open("cookies.pkl", "wb"))
+if not path.exists("cookies.pkl"):
+    pickle.dump(driver.get_cookies(), open("cookies.pkl", "wb"))
 
 driver.quit()
