@@ -31,7 +31,7 @@ f.close()
 options = Options()
 options.add_argument("--headless")
 driver = None # initialize driver
-if sys.argv[1] == "chrome":
+if len(sys.argv) == 2 and sys.argv[1] == "chrome":
     driver = webdriver.Chrome(options=options)
 else:
     driver = webdriver.Firefox(options=options)
